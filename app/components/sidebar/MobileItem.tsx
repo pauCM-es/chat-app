@@ -38,10 +38,10 @@ const MobileItem = ({
       text-gray-500
       hover:text-black
       hover:bg-gray-200
-    `, active && 'bg-gray-200 text-black'
+    `, active && 'bg-gray-200 text-gray-900'
       ) }
     >
-      <Icon classname="h-6 w-6" />
+      <Icon className="h-6 w-6" />
       <span className="sr-only">{ label }</span>
     </Link>
   )
