@@ -8,6 +8,7 @@ import AuthSocialButton from "./AuthSocialButton"
 import { BsGithub, BsGoogle } from "react-icons/bs"
 import axios from "axios"
 import { toast } from "react-hot-toast"
+import { signIn } from "next-auth/react"
 
 type Variant = 'LOGIN' | 'REGISTER'
 
@@ -46,13 +47,41 @@ const AuthForm = () => {
         .finally(() => setIsLoading(false))
     }
     if (variant === 'LOGIN') {
-      //nextAuth signIn
+      signIn('credentials', {
+        ...data,
+        redirect: false
+      })
+        .then((callback) => {
+          console.log(callback)
+
+          if (callback?.error) {
+            toast.error(callback.error)
+          }
+
+          if (callback?.ok && !callback?.error) {
+            toast.success('Logged in!')
+          }
+        })
+        .finally(() => setIsLoading(false))
     }
   }
 
   const socialAction = (action: string) => {
     setIsLoading(true)
-    //NextAuth Social SignIn
+
+    signIn(action, { redirect: false })
+      .then((callback) => {
+        console.log(callback)
+
+        if (callback?.error) {
+          toast.error(callback.error)
+        }
+
+        if (callback?.ok && !callback?.error) {
+          toast.success('Logged in!')
+        }
+      })
+      .finally(() => setIsLoading(false))
   }
 
   return (
