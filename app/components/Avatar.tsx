@@ -18,12 +18,32 @@ const Avatar = ({ user }: AvatartProps) => {
         h-9 w-9
         md:h-11 md:w-11
       ">
-        <Image
-          alt="Avatar"
-          src={ user?.image || '/images/placeholder.jpg' }
-          fill
-          placeholder="data:image/images/placeholder.jpg"
-        />
+        {
+          user?.image ? (
+            <Image
+              alt="Avatar"
+              src={ user?.image || '/images/placeholder.jpg' }
+              fill
+              placeholder="data:image/images/placeholder.jpg"
+            />
+          ) : (
+            user?.name
+              ? <div className="
+              bg-violet-950 text-white font-semibold text-xl
+              w-full h-full
+              flex
+              justify-center
+              items-center
+              "
+              >{ user?.name[0].toUpperCase() }</div>
+              : <Image
+                alt="Avatar"
+                src={ '/images/placeholder.jpg' }
+                fill
+                placeholder="data:image/images/placeholder.jpg"
+              />
+          )
+        }
       </div>
       <span className="
         absolute
