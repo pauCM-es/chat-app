@@ -29,7 +29,7 @@ const Avatar = ({ user }: AvatartProps) => {
           ) : (
             user?.name
               ? <div className="
-              bg-violet-950 text-white font-semibold text-xl
+              bg-violet-800 text-white font-semibold text-xl
               w-full h-full
               flex
               justify-center
@@ -40,7 +40,6 @@ const Avatar = ({ user }: AvatartProps) => {
                 alt="Avatar"
                 src={ '/images/placeholder.jpg' }
                 fill
-                placeholder="data:image/images/placeholder.jpg"
               />
           )
         }
