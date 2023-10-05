@@ -6,11 +6,11 @@ const config: Config = {
 		'./components/**/*.{js,ts,jsx,tsx,mdx}',
 		'./app/**/*.{js,ts,jsx,tsx,mdx}',
 	],
-	theme: {
-		extend: {
-			backgroundImage: {},
-		},
-	},
+	// theme: {
+	// 	extend: {
+	// 		backgroundImage: {},
+	// 	},
+	// },
 	plugins: [
 		require('@tailwindcss/forms')({
 			strategy: 'class',
