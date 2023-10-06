@@ -29,9 +29,7 @@ const DesktopItem = ({
       <Link
         href={ href }
         className={ clsx(`
-        group
         flex
-        gap-x-3
         rounded-md
         p-3
         text-sm

@@ -44,7 +44,7 @@ const DesktopSidebar = ({ currentUser }: DesktopSidebarProps) => {
           flex
           flex-col
           items-center
-          space-y-l
+          space-y-1
         ">
           { routes.map((item) =>
             <DesktopItem
