@@ -1,10 +1,10 @@
 import prisma from '@/app/libs/prismadb';
 
-const getMessages = (conversationID: string) => {
+const getMessages = (conversationId: any) => {
 	try {
 		const messages = prisma.message.findMany({
 			where: {
-				conversationId: { equals: [conversationID] },
+				conversationId,
 			},
 			include: {
 				sender: true,

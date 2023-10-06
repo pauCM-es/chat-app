@@ -1,6 +1,7 @@
 import { getCurrentUser } from '@/app/actions/getCurrentUser';
 import { NextResponse } from 'next/server';
 import prisma from '@/app/libs/prismadb';
+import { Prisma } from '@prisma/client';
 
 export const POST = async (request: Request) => {
 	try {
@@ -33,7 +34,6 @@ export const POST = async (request: Request) => {
 				},
 			},
 		});
-		console.log(newMessage);
 
 		const updateConversation = await prisma.conversation.update({
 			where: {
