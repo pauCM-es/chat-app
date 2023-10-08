@@ -130,7 +130,7 @@ const ProfileDrawer = ({ data, isOpen, onClose }: ProfileDrawerProps) => {
                                 "
                                   >
                                     { data.users.map((user) => (
-                                      <div>{ user.email }</div>
+                                      <div key={ user.id }>{ user.email }</div>
                                     )) }
                                   </dd>
                                 </div>
