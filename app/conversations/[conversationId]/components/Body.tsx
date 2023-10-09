@@ -34,16 +34,31 @@ const Body = ({ initialMessages }: BodyProps) => {
 
         return [...current, message]
       })
+      bottomRef?.current?.scrollIntoView()
+
+    }
+    const updateMessageHandler = (newMessage: FullMessageType) => {
+      setMessages(current => current.map((currentMessage) => {
+        if (currentMessage.id === newMessage.id) {
+          return newMessage
+        }
+
+        return currentMessage
+      }))
     }
 
     pusherClient.bind("messages:new", messageHandler)
+    pusherClient.bind("message:update", updateMessageHandler)
 
     return () => {
       pusherClient.unsubscribe(conversationId!)
-      pusherClient.unbind("messages: new", messageHandler)
+      pusherClient.unbind("messages:new", messageHandler)
+      pusherClient.unbind("message:update", updateMessageHandler)
+
     }
 
   }, [conversationId])
+
 
 
   return (

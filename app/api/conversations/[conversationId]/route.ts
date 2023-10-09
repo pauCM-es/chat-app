@@ -2,6 +2,7 @@ import getConversationById from '@/app/actions/getConversationById';
 import { getCurrentUser } from '@/app/actions/getCurrentUser';
 import { NextResponse } from 'next/server';
 import prisma from '@/app/libs/prismadb';
+import { pusherServer } from '@/app/libs/pusher';
 
 interface Params {
 	conversationId?: string;
@@ -41,8 +42,20 @@ export const DELETE = async (
 			},
 		});
 
+		existingConversation.users.forEach((user) => {
+			if (user.email) {
+				pusherServer.trigger(
+					user.email,
+					'conversation:delete',
+					existingConversation //using this instead of deleteConversation due to BUG
+				);
+			}
+		});
+
 		return NextResponse.json(deleteConversation);
 	} catch (error) {
+		console.log(error);
+
 		return new NextResponse('Internal Error', { status: 500 });
 	}
 };
